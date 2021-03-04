@@ -1,0 +1,19 @@
+server:
+  port: 9001
+
+spring:
+  application:
+    name: springclound-hystrix-turbine
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://admin:pwd@test.eurake1.com:7001/eureka/
+
+turbine:
+  app-config: CONSUMER-USER,CONSUMER-USER2
+  cluster-name-expression: "'default'"
+
+hystrix:
+  dashboard:
+    proxy-stream-allow-list: "localhost"

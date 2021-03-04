@@ -1,0 +1,16 @@
+server:
+  port: 7002
+eureka:
+  instance:
+    hostname: test.eurake2.com
+    instance-id: eurake2
+  #    hostname: eureka-server
+  client:
+#    register-with-eureka: false #不把自己注册到eureka中
+#    fetch-registry: false #不从eureka上来获取服务的注册信息
+    service-url:
+      defaultZone: http://test.eurake1.com:7001/eureka/
+
+spring:
+  application:
+    name: eurake2

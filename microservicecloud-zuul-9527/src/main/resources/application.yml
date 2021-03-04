@@ -1,0 +1,70 @@
+server:
+  port: 9527
+
+spring:
+  application:
+    name: microservicecloud-zuul-gateway
+
+eureka:
+  client:
+    service-url:
+#      defaultZone: http://localhost:7001/eureka/
+      defaultZone: http://admin:pwd@test.eurake1.com:7001/eureka/
+  instance:
+    instance-id: gateway-9527.com
+    prefer-ip-address: true
+info:
+  app.name: atguigu-microcloud
+  company.name: www.atguigu.com
+  build.artifactId: "@project.artifactId@"
+  build.version: "@project.version@"
+
+#zuul:
+#  routes:
+#    myticket.serviceId: provider-ticket
+#    myticket.path: /myticket/**
+#    consumer.serviceId: consumer-user
+#    consumer.path: /consumer/**
+
+
+hystrix:
+  command:
+    default:
+      #    FeignService#getOne(int):
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 5000
+      timeout:
+        enabled: true
+      #断路触发条件
+      circuitBreaker:
+        requestVolumeThreshold: 10
+        sleepWindowInMilliseconds: 40000
+        errorThresholdPercentage: 50
+  # hystrix的线程池配置
+  threadpool:
+    default:
+      #      coreSize: 10
+      coreSize: 2
+      #排队的队列的最大大小
+      maxQueueSize: 200
+      #开始拒绝请求阙值
+      queueSizeRejectionThreshold: 500
+
+  dashboard:
+    proxy-stream-allow-list: "localhost"
+
+#Ribbon配置
+PROVIDER-TICKET:
+  ribbon:
+    MaxAutoRetriesNextServer: 1
+    ConnectionManagerTimeout: 5000
+    ConnectTimeout: 5000
+    ReadTimeout: 10000
+CONSUMER-USER:
+  ribbon:
+    MaxAutoRetriesNextServer: 1
+    ConnectionManagerTimeout: 5000
+    ConnectTimeout: 5000
+    ReadTimeout: 10000
