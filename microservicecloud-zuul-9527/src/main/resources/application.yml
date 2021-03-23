@@ -68,3 +68,7 @@ CONSUMER-USER:
     ConnectionManagerTimeout: 5000
     ConnectTimeout: 5000
     ReadTimeout: 10000
+
+ribbon:
+  okhttp:
+    enabled: true

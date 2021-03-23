@@ -11,7 +11,7 @@ spring:
     driver-class-name: com.mysql.jdbc.Driver
     password: a
     username: root
-    url: jdbc:mysql://192.168.200.114:3306/springcloud_db01?characterEncodeing=utf8&serverTimezone=GMT%2B8
+    url: jdbc:mysql://localhost:3306/springcloud_db01?characterEncodeing=utf8&serverTimezone=GMT%2B8
     #整合阿里的druid数据源
     type: com.alibaba.druid.pool.DruidDataSource
     initialSize: 5

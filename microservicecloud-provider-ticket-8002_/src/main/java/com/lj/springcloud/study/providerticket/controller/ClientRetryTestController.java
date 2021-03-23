@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 public class ClientRetryTestController {
   @GetMapping("/client/providerRetry1")
   public Object test(HttpServletRequest request){
+    System.out.println("请求来啦！");
     return request.getServerPort();
   }
   

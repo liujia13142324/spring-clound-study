@@ -155,7 +155,7 @@ spring cloud gateway 重试 get
 feign(ribbon),gateway,eurake client的缓存
 	gateway的缓存，直接被 eurake client的缓存影响
 	ribbon 也...
-hystrix 原理，	io.reactivex:rxjava 
+#hystrix 原理，	io.reactivex:rxjava 
 log框架学习，alf4j的api 和 log4j的实现，log4j的具体使用
 redis序列化，线程安全（模拟SimplateFormate线程不安全的demo）、concurrentHashMap源码
 线程池测试
@@ -163,12 +163,19 @@ maven的scope
 kubernates 搭建
 ssl 协议和 https协议
 golang,go,python,大数据,机器学习，算法
-内网穿透，找一些使用的开源项目
+# 内网穿透，找一些使用的开源项目
 xdcs hdfs大数据
- 
+asm字节码库，字节码学习，字节码图形化界面，
+学的所有技术的源码，实现原理都学习
+jdk的多线程 juc ， aqs
 
-
-
+新增的sql脚本
+alter table product add column audit_time datetime comment '审核时间'
+alter table inside_certification add column xmly_uid bigint comment '发起认证用户的xmlyuid';
+alter table inside_certification add column company_id bigint comment '发起认证用户的公司id';
+alter table product change column remarks audit_remark varchar(2000) comment '审核流程备注信息[{"index":1,content:"",createDate:"xxx","uid":1,"uname":""}]' ;
+alter table data_dictionary_val change data_val data_val varchar(2000) comment '字典值'
+alter table data_dictionary_val change data_key data_key varchar(50) comment '字典key'
 
 
 
