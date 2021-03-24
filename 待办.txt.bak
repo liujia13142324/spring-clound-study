@@ -1,0 +1,182 @@
+60% 团、期逻辑、订单统计数据缓存   
+100% 查询订单物流接口暴露   
+100% 物流修改，超范围的订单挂起 
+订单物流信息添加配送距离（创建物流订单的时候，找前端配合）
+100% 第三方物流线上测试 
+80% 和订单的交互 	
+100% 商品的sku改造  
+100% 店家订单、
+100% 确认收货 
+100% thirdparty流水加上apiDesc 
+100% 配送费改成分->元
+100% 缓存过期时间 2个小时
+100%保存商品接口，修改商品
+100% 商品排序，销量,id
+100% 期的订单金额统计，定时器（5分钟），修改缓存，自动更新团
+100% 期弄完了后，记得把时间加上
+100%商品类别新增类别排序
+100% 物流订单挂起
+90% 查询金额，存在分和元的转换问题
+90% 期添加字段成团总数、期内总数金额
+90% 批量保存 商品sku接口
+80% 前端商品 按照销量倒序，价格顺序 。 期菜单按照 rank字段排序
+70% 期的菜单类别新增类别排序
+70% netty socket模块
+50% 结束期
+50% 开启/关闭一个期的接口
+50% 复制一整个期的接口
+70% 后台奖金卡，奖金卡详解
+70% minPrice
+50% 数据库约束的友好提示，全局拦截
+50% 日志注解切面
+
+拦截缓存自动刷新：
+	修改商品上下架
+	新增活动类目
+	新增活动类目商品
+	修改期的信息
+	
+
+#用户的城市能不能换成中文
+商品的销量数据，
+
+置顶，沉底，隐藏
+配置文件抽出来
+抽出id服务
+
+
+用户、商品、商家、订单、统计数据 
+每一期的商品sku冗余，后期必要需求
+评论改造
+
+
+待解决问题：
+分布式事务
+
+
+
+
+
+create table shop_statistics_everyday(
+	id int primary key auto_increment,
+	code varchar(50),
+	row_status tinyint,
+	create_time datetime,
+	edit_time datetime,
+	shop_id varchar(50),
+	order_count int comment '总订单量',
+	order_cancel int comment '取消的订单数量',
+	order_money float comment '订单的总金额',
+	order_money_cancel float comment '取消订单的金额',
+	visit_count int comment '门店访问量',
+	like_count int comment '门店点赞量' 
+);
+alter table shop_statistics comment = '门店每日统计表';
+
+create table ndjshop_statistic_everyday (
+	id int primary key auto_increment,
+	code varchar(50),
+	row_status tinyint,
+	create_time datetime,
+	edit_time datetime,
+	order_count int comment '总订单量',
+	order_cancel int comment '取消的订单数量',
+	order_money float comment '订单的总金额',
+	order_money_cancel float comment '取消订单的金额',
+	visit_count int comment '系统的访问量',
+	user_count int comment '访问的用户量'
+)
+alter table shop_statistics comment = '系统每日统计表';
+
+CREATE TABLE shop_log  (
+ id int primary key auto_increment,
+	code varchar(50),
+	row_status tinyint,
+	create_time datetime,
+	edit_time datetime,
+  opt_emp varchar(50) comment '操作人id',
+  api_url varchar(50) comment 'api的url',
+  api_desc varchar(255) comment 'api的描述',
+	api_params MEDIUMTEXT comment 'api的参数',
+	api_response MEDIUMTEXT comment 'api的响应',
+	api_exception MEDIUMTEXT comment 'api的异常',
+	startTime datetime comment '请求的开始时间',
+	endTime datetime comment '请求的结束时间'
+) 
+alter table shop_log comment = '后台日志表';
+
+
+create table user_bonus_statistics(
+	id int primary key auto_increment,
+	code varchar(50),
+	row_status tinyint,
+	create_time datetime,
+	edit_time datetime,
+	user_code varchar(50),
+	use_count int comment '使用奖金卡数量',
+	get_count int comment '领用奖金卡数量',
+	invite_count int comment '邀请拼团人数',
+	order_money_sum float comment '消费总金额',
+	order_count int comment '消费数量',
+	order_bonus int comment '下单奖金',
+	gb_bonus	int comment '拼团奖金'
+);
+alter table user_bonus_statistics comment = '用户奖金统计信息';
+
+
+
+
+create table data_dictionary(
+	id int primary key auto_increment,
+	code varchar(50),
+	row_status tinyint,
+	create_time datetime,
+	edit_time datetime,
+	data_key varchar(50)
+);
+alter table user_bonus_statistics comment = '字典key表';
+
+create table data_dictionary_values(
+	id int primary key auto_increment,
+	code varchar(50),
+	row_status tinyint,
+	create_time datetime,
+	edit_time datetime,
+	data_key varchar(50),
+	data_val varchar(255)
+);
+alter table user_bonus_statistics comment = '字典val表';
+
+
+
+
+spring cloud gateway 重试 get
+
+feign(ribbon),gateway,eurake client的缓存
+	gateway的缓存，直接被 eurake client的缓存影响
+	ribbon 也...
+#hystrix 原理，	io.reactivex:rxjava 
+log框架学习，alf4j的api 和 log4j的实现，log4j的具体使用
+redis序列化，线程安全（模拟SimplateFormate线程不安全的demo）、concurrentHashMap源码
+线程池测试
+maven的scope
+kubernates 搭建
+ssl 协议和 https协议
+golang,go,python,大数据,机器学习，算法
+# 内网穿透，找一些使用的开源项目
+xdcs hdfs大数据
+asm字节码库，字节码学习，字节码图形化界面，
+
+新增的sql脚本
+alter table product add column audit_time datetime comment '审核时间'
+alter table inside_certification add column xmly_uid bigint comment '发起认证用户的xmlyuid';
+alter table inside_certification add column company_id bigint comment '发起认证用户的公司id';
+alter table product change column remarks audit_remark varchar(2000) comment '审核流程备注信息[{"index":1,content:"",createDate:"xxx","uid":1,"uname":""}]' ;
+alter table data_dictionary_val change data_val data_val varchar(2000) comment '字典值'
+alter table data_dictionary_val change data_key data_key varchar(50) comment '字典key'
+
+
+
+
+
+
