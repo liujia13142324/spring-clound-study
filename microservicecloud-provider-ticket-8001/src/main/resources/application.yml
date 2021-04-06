@@ -54,4 +54,6 @@ management:
       exposure:
         include: '*'
 
-
+test:
+  name: 小明
+  sex: 男

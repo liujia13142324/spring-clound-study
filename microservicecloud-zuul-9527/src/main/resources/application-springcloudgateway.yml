@@ -1,0 +1,48 @@
+spring:
+  main:
+    allow-bean-definition-overriding: true
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          lower-case-service-id: true
+          enabled: true
+        filters:
+          - name: Retry
+            args:
+              retries: 3
+              series:
+                - SERVER_ERROR
+              statuses:
+                - OK
+              methods:
+                - GET
+                - POST
+              exceptions:
+                - java.lang.Exception
+
+
+  application:
+    name: gbs-gatewayserver
+  servlet:
+    multipart:
+      max-file-size: 50MB
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://admin:pwd@test.eurake1.com:7001/eureka/
+  instance:
+    preferIpAddress: true
+    ip-address: localhost
+  host:
+    connect-timeout-millis: 20000
+    socket-timeout-millis: 60000
+
+ribbon:
+  ConnectTimeout: 20000
+  ReadTimeout: 20000
+
+
+logging.level.org.springframework.cloud.gateway.filter.factory: TRACE
+
+debug: true
