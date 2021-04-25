@@ -19,12 +19,12 @@ info:
   build.artifactId: "@project.artifactId@"
   build.version: "@project.version@"
 
-#zuul:
-#  routes:
-#    myticket.serviceId: provider-ticket
-#    myticket.path: /myticket/**
-#    consumer.serviceId: consumer-user
-#    consumer.path: /consumer/**
+zuul:
+  routes:
+    myticket.serviceId: provider-ticket
+    myticket.path: /myticket/**
+    consumer.serviceId: consumer-user
+    consumer.path: /consumer/**
 
 
 hystrix:

@@ -3,24 +3,25 @@ spring:
     allow-bean-definition-overriding: true
   cloud:
     gateway:
+      enabled: true
+      routes:
+#        filters:
+#          - name: Retry
+#            args:
+#              retries: 3
+#              series:
+#                - SERVER_ERROR
+#              statuses:
+#                - OK
+#              methods:
+#                - GET
+#                - POST
+#              exceptions:
+#                - java.lang.Exception
       discovery:
         locator:
-          lower-case-service-id: true
           enabled: true
-        filters:
-          - name: Retry
-            args:
-              retries: 3
-              series:
-                - SERVER_ERROR
-              statuses:
-                - OK
-              methods:
-                - GET
-                - POST
-              exceptions:
-                - java.lang.Exception
-
+          lower-case-service-id: true
 
   application:
     name: gbs-gatewayserver
@@ -44,5 +45,7 @@ ribbon:
 
 
 logging.level.org.springframework.cloud.gateway.filter.factory: TRACE
-
 debug: true
+logging:
+  pattern:
+    console: "%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(${LOG_LEVEL_PATTERN:-%5p}) %clr(${PID:- }){magenta} %clr(---){faint} %clr([%t]){faint} %clr(%-40.40logger{39}){cyan}[lineno:%line]    %clr(:){faint} %m%n${LOG_EXCEPTION_CONVERSION_WORD:%wEx}"

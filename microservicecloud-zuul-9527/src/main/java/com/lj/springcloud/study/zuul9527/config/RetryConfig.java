@@ -12,21 +12,23 @@ import org.springframework.web.reactive.socket.client.WebSocketClient;
 @Configuration
 @AutoConfigureAfter(GatewayDiscoveryClientAutoConfiguration.class)
 public class RetryConfig {
-  
+
   public RetryConfig(DiscoveryLocatorProperties properties){
     properties.getFilters().add(initRetryFilter());
   }
-  
-  
+
+
   private FilterDefinition initRetryFilter() {
     FilterDefinition filterDefinition = new FilterDefinition();
     filterDefinition.setName("Retry");
     return filterDefinition;
   }
-  
-  @Bean
+
+/* @Bean
   public WebSocketClient webSocketClient(){
     return  new StandardWebSocketClient();
-  }
-  
+  }*/
+
+
+
 }
